@@ -1,0 +1,30 @@
+# Ambiente virtual
+venv/
+.env/
+.env.*
+
+# Arquivos de configuração sensíveis
+*.env
+
+# Cache e arquivos temporários
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.log
+*.tmp
+*.swp
+
+# Dados gerados pelo projeto
+data/
+*.csv
+*.json
+*.xlsx
+
+# Arquivos de banco de dados
+*.db
+*.sqlite3
+
+# Logs
+logs/
