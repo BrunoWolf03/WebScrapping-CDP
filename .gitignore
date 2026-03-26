@@ -21,6 +21,7 @@ data/
 *.csv
 *.json
 *.xlsx
+*.png
 
 # Arquivos de banco de dados
 *.db
