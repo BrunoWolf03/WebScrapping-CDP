@@ -1,19 +1,40 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from time import sleep
+import requests
+import os
 
-navegador = webdriver.Chrome()
+driver = webdriver.Chrome()
+driver.get("https://cdp.anp.gov.br/ords/r/cdp_apex/consulta-dados-publicos-cdp/consulta-produ%C3%A7%C3%A3o-por-po%C3%A7o")
 
-sleep(2)
+input("Resolve carregamento inicial e aperta ENTER...")
 
-navegador.maximize_window()
-navegador.get('https://cdp.anp.gov.br/ords/r/cdp_apex/consulta-dados-publicos-cdp/consulta-produção-por-poço')
+# pegar div do captcha
+captcha_div = driver.find_element(By.ID, "anp_p54_captcha")
 
-form_data = navegador.find_element(By.ID, 'P54_PERIODO')
-dropdown_tipo_ambiente = navegador.find_element(By.ID, 'P54_AMBIENTE')
+# pegar todas as imagens dentro dela
+imgs = captcha_div.find_elements(By.TAG_NAME, "img")
 
-sleep(2)
+# criar pasta
+os.makedirs("captcha_imgs", exist_ok=True)
 
+# pegar cookies do navegador (IMPORTANTE)
+cookies = driver.get_cookies()
+session = requests.Session()
 
-navegador.quit()
+for cookie in cookies:
+    session.cookies.set(cookie['name'], cookie['value'])
+
+# baixar imagens
+for i, img in enumerate(imgs):
+    src = img.get_attribute("src")
+
+    # completar URL se vier relativa
+    if src.startswith("www_flow"):
+        src = "https://cdp.anp.gov.br/ords/" + src
+
+    response = session.get(src)
+
+    with open(f"captcha_imgs/img_{i}.png", "wb") as f:
+        f.write(response.content)
+
+    print(f"Imagem {i} salva:", src)
