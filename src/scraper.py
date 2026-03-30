@@ -34,7 +34,14 @@ def scrapeData(driver, lista_periodos, tipo_ambiente):
         period_input = driver.find_element(By.ID, "P54_PERIODO")
         period_input.click()
         period_input.clear()
-        period_input.send_keys(periodo)
+        
+        # Envia o cursor para o início do campo para evitar bugs na máscara (ex: __/____)
+        period_input.send_keys(Keys.HOME)
+        
+        # Digita um número por vez com uma leve pausa simulando um humano
+        for char in periodo:
+            period_input.send_keys(char)
+            sleep(0.1)
 
         erros = 0
         while erros < 3:
