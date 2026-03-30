@@ -27,7 +27,7 @@ def ocr_com_votacao(ocr, img_bytes: bytes, tentativas: int = 3) -> str:
             resultados.append(limpo[0])
     
     if not resultados:
-        return "?"
+        return "I"
     
     return Counter(resultados).most_common(1)[0][0]
 
@@ -51,7 +51,7 @@ def enviar_captcha(driver):
 
             except Exception as e_ocr:
                 print(f"Erro ao ler caractere {i}: {e_ocr}")
-                texto_final_captcha += "?"
+                texto_final_captcha += "I"
 
         print("-" * 30)
         print(f"RESULTADO DO CAPTCHA: '{texto_final_captcha}'")
