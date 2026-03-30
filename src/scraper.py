@@ -21,7 +21,7 @@ def identificar_erro_captcha(driver):
         return False
 
 
-def scrapeData(driver, lista_periodos):
+def scrapeData(driver, lista_periodos, tipo_ambiente):
 
     for periodo in lista_periodos:
         sleep(2)
@@ -34,7 +34,7 @@ def scrapeData(driver, lista_periodos):
         ambiente_input = driver.find_element(By.ID, "P54_AMBIENTE")
         ambiente_input.click()
         sleep(1)
-        ambiente_option = driver.find_element(By.XPATH, "//option[@value='M']") 
+        ambiente_option = driver.find_element(By.XPATH, f"//option[@value='{tipo_ambiente}']") 
         ambiente_option.click()
 
         erros = 0
