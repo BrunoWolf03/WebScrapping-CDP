@@ -44,7 +44,7 @@ def scrapeData(driver, lista_periodos, tipo_ambiente):
             sleep(0.1)
 
         erros = 0
-        while erros < 3:
+        while erros < 10:
             imgs = capturar_captcha(driver)
 
             print("Imagens capturadas:", imgs)
@@ -62,12 +62,12 @@ def scrapeData(driver, lista_periodos, tipo_ambiente):
                 continue
             else:
                 break
-        if erros >= 3:
+        if erros >= 10:
             return
         # A partir daqui, extraímos os dados da página clicando no botão de exportar para csv
         sleep(2)
         erros = 0
-        while erros < 3:
+        while erros < 10:
             imgs = capturar_captcha(driver)
             print("Imagens capturadas (Exportação):", imgs)
 
@@ -86,7 +86,7 @@ def scrapeData(driver, lista_periodos, tipo_ambiente):
                 print("Iniciando o download do CSV...")
                 sleep(5)
                 break
-        if erros >= 3:
+        if erros >= 10:
             return
         
     return
