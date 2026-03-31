@@ -6,8 +6,8 @@ from pathlib import Path
 DATA_DIR = Path(__file__).parent.parent / "data"
 OUTPUT_DIR = Path(__file__).parent.parent / "merged"
 
-PRODUCTION_TYPES = ["Mar", "Presal", "Terra"]
-FILE_PATTERN = re.compile(r"^(\d{4})_(\d{2})_producao_(Mar|Presal|Terra)\.csv$")
+PRODUCTION_TYPES = ["Mar", "PreSal", "Terra"]
+FILE_PATTERN = re.compile(r"^\d{4}_\d{2}_producao_(Mar|PreSal|Terra)\.csv$")
 
 
 def merge_csvs():
@@ -20,11 +20,9 @@ def merge_csvs():
         if not match:
             continue
 
-        year, month, prod_type = match.group(1), match.group(2), match.group(3)
-        timestamp = f"{month}/{year}"
+        prod_type = match.group(1)
 
         df = pd.read_csv(DATA_DIR / filename, encoding="latin-1")
-        df["timestamp"] = timestamp
         groups[prod_type].append(df)
 
     for prod_type, frames in groups.items():
