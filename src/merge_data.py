@@ -7,7 +7,11 @@ DATA_DIR = Path(__file__).parent.parent / "data"
 OUTPUT_DIR = Path(__file__).parent.parent / "merged"
 
 PRODUCTION_TYPES = ["Mar", "PreSal", "Terra"]
+<<<<<<< HEAD
 FILE_PATTERN = re.compile(r"^\d{4}_\d{2}_producao_(Mar|PreSal|Terra)\.csv$")
+=======
+FILE_PATTERN = re.compile(r"^(\d{4})_(\d{2})_producao_(Mar|PreSal|Terra)\.csv$")
+>>>>>>> 1e4d1b082b9694f9ee7adec07fa0a2934cc64368
 
 
 def merge_csvs():
