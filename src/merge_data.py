@@ -6,8 +6,8 @@ from pathlib import Path
 DATA_DIR = Path(__file__).parent.parent / "data"
 OUTPUT_DIR = Path(__file__).parent.parent / "merged"
 
-PRODUCTION_TYPES = ["Mar", "Presal", "Terra"]
-FILE_PATTERN = re.compile(r"^(\d{4})_(\d{2})_producao_(Mar|Presal|Terra)\.csv$")
+PRODUCTION_TYPES = ["Mar", "PreSal", "Terra"]
+FILE_PATTERN = re.compile(r"^(\d{4})_(\d{2})_producao_(Mar|PreSal|Terra)\.csv$")
 
 
 def merge_csvs():
