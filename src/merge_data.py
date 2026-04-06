@@ -20,9 +20,9 @@ def merge_csvs():
         if not match:
             continue
 
-        prod_type = match.group(1)
+        prod_type = match.group(3)
 
-        df = pd.read_csv(DATA_DIR / filename, encoding="latin-1")
+        df = pd.read_csv(DATA_DIR / filename, encoding="latin-1", sep=";", decimal=",")
         groups[prod_type].append(df)
 
     for prod_type, frames in groups.items():
