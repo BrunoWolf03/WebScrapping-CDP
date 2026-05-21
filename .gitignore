@@ -22,6 +22,7 @@ data/
 *.json
 *.xlsx
 *.png
+*.parquet
 
 # Arquivos de banco de dados
 *.db
