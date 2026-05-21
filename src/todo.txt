@@ -1,0 +1,4 @@
+- utilizando selenium se livrar do captcha
+- depois de passar do captcha coletar informações de jan/2023 até fevereiro 2026
+- mostrar pro Italo dados coletados
+- cenas dos próximos capitulos 
